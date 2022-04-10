@@ -11,10 +11,72 @@
 		.hidden {
 			visibility: hidden;
 		}
+		.none {
+			display: none;
+		}
+		li {
+			white-space: nowrap;
+		}
 	</style>
 </head>
 <body>
-	<button id="copy">copy</button><span id="copied" class="hidden">copied!</span>
+	<div style="flex: 1; flex-direction: row; align-items: stretch; display: block;">
+		<button id="copy">copy</button><button id="cog">&#9881;</button>
+	</div>
+	<div id="copied" class="hidden">copied!</div>
+	<div id="settings" class="none">
+		<button id="copy_columns">copy columns</button>
+		<ol>
+			<li>
+				<input type="checkbox" id="datetime" /><label for="datetime">datetime</label>
+			</li>
+			<li>
+				<input type="checkbox" id="end_turn" /><label for="end_turn">end_turn</label>
+			</li>
+			<li>
+				<input type="checkbox" id="name" /><label for="name">name</label>
+			</li>
+			<li>
+				<input type="checkbox" id="deckname" /><label for="deckname">deckname</label>
+			</li>
+			<li>
+				<input type="checkbox" id="doklink" /><label for="doklink">doklink</label>
+			</li>
+			<li>
+				<input type="checkbox" id="keys" /><label for="keys">keys</label>
+			</li>
+			<li>
+				<input type="checkbox" id="amber" /><label for="amber">amber</label>
+			</li>
+			<li>
+				<input type="checkbox" id="keycost" /><label for="keycost">keycost</label>
+			</li>
+			<li>
+				<input type="checkbox" id="concede" /><label for="concede">concede</label>
+			</li>
+			<li>
+				<input type="checkbox" id="opp_name" /><label for="opp_name">opp_name</label>
+			</li>
+			<li>
+				<input type="checkbox" id="opp_deckname" /><label for="opp_deckname">opp_deckname</label>
+			</li>
+			<li>
+				<input type="checkbox" id="opp_doklink" /><label for="opp_doklink">opp_doklink</label>
+			</li>
+			<li>
+				<input type="checkbox" id="opp_keys" /><label for="opp_keys">opp_keys</label>
+			</li>
+			<li>
+				<input type="checkbox" id="opp_amber" /><label for="opp_amber">opp_amber</label>
+			</li>
+			<li>
+				<input type="checkbox" id="opp_keycost" /><label for="opp_keycost">opp_keycost</label>
+			</li>
+			<li>
+				<input type="checkbox" id="opp_concede" /><label for="opp_concede">opp_concede</label>
+			</li>
+		</ol>
+	</div>
 	<script type="text/javascript" src="popup.js"></script>
 </body>
 </html>

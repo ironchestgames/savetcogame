@@ -56,7 +56,8 @@ chrome.runtime.onMessage.addListener(
 			}
 		}
 
-		const allMessages = document.querySelectorAll("#component > div > div.bg > div.wrapper > div > div > div.main-window > div.right-side > div.gamechat > div > div > div > div")
+		const allMessages = document.querySelectorAll('#component > div > div.bg > div.wrapper > div > div > div.main-window > div.right-side > div.gamechat > div > div > div > div')
+
 		let endTurn = undefined;
 		for (let i = allMessages.length - 1; i >= 0; i--) {
 			const innerText = allMessages[i].firstChild.innerText
@@ -66,25 +67,40 @@ chrome.runtime.onMessage.addListener(
 			}
 		}
 
-		// const endRound = document.querySelector("#component > div > div.bg > div.wrapper > div > div > div.main-window > div.right-side > div.gamechat > div > div > div > div:nth-child(179) > div")
+		let myConcede = null
+		let oppConcede = null
+		for (let i = allMessages.length - 1; i >= 0; i--) {
+			const isConcedeMessage = allMessages[i].firstChild?.lastChild?.lastChild?.textContent
+			if (isConcedeMessage === ' concedes ') {
+				const username = allMessages[i].firstChild.lastChild.children[0].textContent
+				if (username === usernames[me]) {
+					myConcede = true
+				} else if (username === usernames[opponent]) {
+					oppConcede = true
+				}
+				break
+			}
+		}
 
-  	const values = [
-  		datetime,
-  		endTurn,
-  		usernames[me],
-  		deckName,
-  		'https://decksofkeyforge.com/decks/' + deckid,
-  		myKeys,
-  		myAmber,
-  		myKeyCost,
-  		usernames[opponent],
-  		oppDeckName,
-  		'https://decksofkeyforge.com/decks/' + oppDeckid,
-  		oppKeys,
-  		oppAmber,
-  		oppKeyCost,
-  	]
+  	const values = {
+  		datetime: datetime,
+  		end_turn: endTurn,
+  		name: usernames[me],
+  		deckname: deckName,
+  		doklink: 'https://decksofkeyforge.com/decks/' + deckid,
+  		keys: myKeys,
+  		amber: myAmber,
+  		keycost: myKeyCost,
+  		condede: myConcede,
+  		opp_name: usernames[opponent],
+  		opp_deckname: oppDeckName,
+  		opp_doklink: 'https://decksofkeyforge.com/decks/' + oppDeckid,
+  		opp_keys: oppKeys,
+  		opp_amber: oppAmber,
+  		opp_keycost: oppKeyCost,
+  		opp_concede: oppConcede,
+  	}
 
-    sendResponse(values.join('	'))
+    sendResponse(values)
   }
 );
